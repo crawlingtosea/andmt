@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * Created by Administrator on 2016/6/22 0022.
  */
-public class Andmt extends View {
+public abstract class Andmt extends View {
     protected Paint paint;
     protected Canvas canvas;
 
@@ -36,7 +36,17 @@ public class Andmt extends View {
 
     private int _strokeWidth=3;
 
+    public int get_d() {
+        return _d;
+    }
 
+    public void set_d(int _d) {
+        this._d = _d;
+    }
+
+    //paiµÄºñ¶È
+    private int _d=10;
+    public static  enum ACENUM{acenum_top,acenum_botton,acenum_left,acenum_right,acenum_origin;}
 
     public Andmt(Context context) {
         super(context);
@@ -48,15 +58,27 @@ public class Andmt extends View {
 
     private void init() {
         paint.setColor(get_color());
+        paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(get_StrokeWidth());
         paint.setAntiAlias(true);
 
 
     }
 
+    public void move(int xpos,int ypos) {
+        this.setX(xpos);
+        this.setY(ypos);
+    }
+
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         init();
+    }
+
+    public void clone2Shape(ACENUM value) {
+
     }
 }

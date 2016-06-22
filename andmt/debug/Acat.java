@@ -15,7 +15,12 @@ public class Acat extends Activity {
         super.onCreate(savedInstanceState);
 
         AcLBar acLBar=new AcLBar(this);
+        acLBar.set_n1(500);
+        acLBar.set_n2(100);
+       acLBar.set_padding(40);
 
+        acLBar.clone2Shape(Andmt.ACENUM.acenum_right);
+        acLBar.move(200,400);
         setContentView(acLBar);
 
 

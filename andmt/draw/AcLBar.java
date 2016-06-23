@@ -1,5 +1,6 @@
 package andmt.draw;
 
+import andmt.methods.Point;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -40,19 +41,20 @@ public class AcLBar extends Andmt {
     private float _padding=0;
    // private static final int AcLBar_left=0;
    // private static final int AcLBar_right=1;
-    private float[] f=new float[]{};
 
-    protected static enum enum_AcLBar{enl_left,enl_right,enl_origin};
+    private Point p=new Point();
 
-    public enum_AcLBar get_enum_aclbar() {
-        return _enum_aclbar;
+    public  enum enumaclbar {enlsmall, enlbig, enlorigin};
+
+    public  enumaclbar getStatus() {
+        return status;
     }
 
-    public void set_enum_aclbar(enum_AcLBar _enum_aclbar) {
-        this._enum_aclbar = _enum_aclbar;
+    public void setStatus(enumaclbar value) {
+        this.status = value;
     }
 
-    private enum_AcLBar _enum_aclbar=enum_AcLBar.enl_origin;
+    private  enumaclbar status = enumaclbar.enlorigin;
 
     public AcLBar(Context context) {
         super(context);
@@ -65,71 +67,60 @@ public class AcLBar extends Andmt {
     }
 
     @Override
-    public void clone2Shape(ACENUM value) {
-        super.clone2Shape(value);
+    public void offset(acenum value) {
+        super.offset(value);
 
         switch (value) {
-            case acenum_left:
-               set_enum_aclbar(enum_AcLBar.enl_left);
+            case acenum_samll:
+               setStatus(enumaclbar.enlsmall);
                 break;
-            case acenum_right:
-               set_enum_aclbar(enum_AcLBar.enl_right);
+            case acenum_big:
+               setStatus(enumaclbar.enlbig);
                 break;
 
         }
         invalidate();
 
     }
-    private void drawRight(){
+    private void drawSmall(){
             float lp=(get_padding()+get_d());
-            f=new float[]{0,0,0,get_n1(),
-            0,get_n1(),0,get_n1()+get_d(),
-            0,get_n1()+get_d(),get_d()+get_n2(),get_n1()+get_d(),
-            get_d()+get_n2(),get_n1()+get_d(),get_d()+get_n2(),get_n1(),
-            get_d()+get_n2(),get_n1(),get_d(),get_n1(),
-            get_d(),get_n1(),get_d(),0,
-            get_d(),0,0,0,
-            0+lp,0,0+lp,get_n1()-lp,
-            0+lp,get_n1()-lp,0+lp,get_n1()+get_d()-lp,
-            0+lp,get_n1()+get_d()-lp,get_d()+get_n2(),get_n1()+get_d()-lp,
-            get_d()+get_n2(),get_n1()+get_d()-lp,get_d()+get_n2(),get_n1()-lp,
-            get_d()+get_n2(),get_n1()-lp,get_d()+lp,get_n1()-lp,
-            get_d()+lp,get_n1()-lp,get_d()+lp,0,
-            get_d()+lp, 0 ,0+lp,0};
+
+
+
 }
 
-    private void drawLeft() {
+    private void drawBig() {
         float lp=(get_padding()+get_d());
-       f=new float[]{0,0,0,get_n1(),
-                0,get_n1(),0,get_n1()+get_d(),
-                0,get_n1()+get_d(),get_d()+get_n2(),get_n1()+get_d(),
-                get_d()+get_n2(),get_n1()+get_d(),get_d()+get_n2(),get_n1(),
-                get_d()+get_n2(),get_n1(),get_d(),get_n1(),
-                get_d(),get_n1(),get_d(),0,
-                get_d(),0,0,0,
-                0-lp,0,0-lp,get_n1()+lp,
-                0-lp,get_n1()+lp,0-lp,get_n1()+get_d()+lp,
-                0-lp,get_n1()+get_d()+lp,get_d()+get_n2()+lp,get_n1()+get_d()+lp,
-                get_d()+get_n2()+lp,get_n1()+get_d()+lp,get_d()+get_n2()-lp,get_n1()+lp,
-                get_d()+get_n2()-lp,get_n1()+lp,get_d()-lp,get_n1()+lp,
-                get_d()-lp,get_n1()+lp,get_d()-lp,0+lp,
-                get_d()-lp,0+lp,0-lp,0};
+
 
     }
 
     private void drawOrigin() {
         if(get_n1()>0&&get_n2()>0) {
-            f=new float[]{
-                    0,0,0,get_n1(),
-                    0,get_n1(),0,get_n1()+get_d(),
-                    0,get_n1()+get_d(),get_d()+get_n2(),get_n1()+get_d(),
-                    get_d()+get_n2(),get_n1()+get_d(),get_d()+get_n2(),get_n1(),
-                    get_d()+get_n2(),get_n1(),get_d(),get_n1(),
-                    get_d(),get_n1(),get_d(),0,
-                    get_d(),0,0,0
+            p.add(0,0);
 
-            };
+            p.add(0,get_n1()+get_d());
 
+            p.add(get_d()+get_n2(),get_n1()+get_d());
+
+            p.add(get_d()+get_n2(),get_n1());
+
+            p.add(get_d(),get_n1());
+
+            p.add(get_d(),0);
+
+//
+//            p.add(0,get_n1()+get_d());
+//            p.add(0,get_n1()+get_d());
+//            p.add(get_d()+get_n2(),get_n1()+get_d());
+//            p.add(get_d()+get_n2(),get_n1()+get_d());
+//            p.add(get_d()+get_n2(),get_n1());
+//            p.add(get_d()+get_n2(),get_n1());
+//            p.add(get_d(),get_n1());
+//            p.add(get_d(),get_n1());
+//            p.add(get_d(),0);
+//            p.add(get_d(),0);
+//            p.add(0,0);
         }else{
             Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
         }
@@ -138,18 +129,22 @@ public class AcLBar extends Andmt {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        switch (get_enum_aclbar()) {
-            case enl_left:
-                drawLeft();
+        switch (getStatus()) {
+            case enlsmall:
+                drawBig();
                 break;
-            case enl_origin:
+            case enlorigin:
                 drawOrigin();
                 break;
-            case enl_right:
-                drawRight();
+            case enlbig:
+                drawSmall();
                 break;
         }
-        canvas.drawLines(f, paint);
+
+
+        canvas.drawLines(p.getBarPoints(), paint);
+
+
 
     }
 }

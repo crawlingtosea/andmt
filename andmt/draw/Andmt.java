@@ -46,7 +46,7 @@ public abstract class Andmt extends View {
 
     //paiµÄºñ¶È
     private int _d=10;
-    public static  enum ACENUM{acenum_top,acenum_botton,acenum_left,acenum_right,acenum_origin;}
+    public static  enum acenum{acenum_samll,acenum_big;}
 
     public Andmt(Context context) {
         super(context);
@@ -78,7 +78,7 @@ public abstract class Andmt extends View {
         init();
     }
 
-    public void clone2Shape(ACENUM value) {
+    public void offset(acenum value) {
 
     }
 }

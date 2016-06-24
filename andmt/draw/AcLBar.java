@@ -144,7 +144,8 @@ public class AcLBar extends Andmt {
 
         canvas.drawLines(p.getBarPoints(), paint);
 
-
+        System.out.println("//////////////");
+        p.output();
 
     }
 }

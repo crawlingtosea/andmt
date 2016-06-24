@@ -78,7 +78,7 @@ public abstract class Andmt extends View {
         init();
     }
 
-    public void offset(acenum value) {
+    public void offset(int value) {
 
     }
 }

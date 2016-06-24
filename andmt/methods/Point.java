@@ -56,11 +56,11 @@ private float[] f;
 
                 }
                 count = count + 2;
-            } else if (ind == tot - 2) {
-                value .add((float)ind - (tot / 4 + 1) * 2 + 1);
+            } else if (ind ==( tot - 2)) {
+                value .add((float)(ind - (tot / 4 + 1) * 2 + 2));
 
-            } else if (ind == tot - 1) {
-                value.add((float)ind - (tot / 4 + 1) * 2 + 1);
+            } else if (ind == (tot - 1)) {
+                value.add((float)(ind - (tot / 4 + 1) * 2 + 2));
 
             }
         }

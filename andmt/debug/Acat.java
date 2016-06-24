@@ -16,8 +16,8 @@ public class Acat extends Activity {
         AcLBar acLBar=new AcLBar(this);
         acLBar.set_n1(500);
         acLBar.set_n2(100);
-        acLBar.setStatus(AcLBar.enumaclbar.enlorigin);
-        acLBar.move(200, 400);
+        acLBar.setStatus(AcLBar.offset_normal);
+        acLBar.move(-10, 400);
         setContentView(acLBar);
 
 

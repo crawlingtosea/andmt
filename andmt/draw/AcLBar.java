@@ -29,32 +29,24 @@ public class AcLBar extends Andmt {
     private float _n1=0;
     private float _n2=0;
 
-    public float get_padding() {
-        return _padding;
-    }
 
-    public void set_padding(float _padding) {
-        this._padding = _padding;
-        invalidate();
-    }
-
-    private float _padding=0;
-   // private static final int AcLBar_left=0;
-   // private static final int AcLBar_right=1;
+    public static final int offset_small=0;
+    public static final int offset_big=1;
+    public static final int offset_normal=2;
 
     private Point p=new Point();
 
-    public  enum enumaclbar {enlsmall, enlbig, enlorigin};
 
-    public  enumaclbar getStatus() {
+
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(enumaclbar value) {
+    public void setStatus(int value) {
         this.status = value;
     }
 
-    private  enumaclbar status = enumaclbar.enlorigin;
+    private  int status ;
 
     public AcLBar(Context context) {
         super(context);
@@ -67,15 +59,15 @@ public class AcLBar extends Andmt {
     }
 
     @Override
-    public void offset(acenum value) {
+    public void offset(int value) {
         super.offset(value);
 
         switch (value) {
-            case acenum_samll:
-               setStatus(enumaclbar.enlsmall);
+            case offset_small:
+               setStatus(offset_small);
                 break;
-            case acenum_big:
-               setStatus(enumaclbar.enlbig);
+            case offset_big:
+               setStatus(offset_big);
                 break;
 
         }
@@ -83,14 +75,13 @@ public class AcLBar extends Andmt {
 
     }
     private void drawSmall(){
-            float lp=(get_padding()+get_d());
+
 
 
 
 }
 
     private void drawBig() {
-        float lp=(get_padding()+get_d());
 
 
     }
@@ -98,29 +89,12 @@ public class AcLBar extends Andmt {
     private void drawOrigin() {
         if(get_n1()>0&&get_n2()>0) {
             p.add(0,0);
-
             p.add(0,get_n1()+get_d());
-
             p.add(get_d()+get_n2(),get_n1()+get_d());
-
             p.add(get_d()+get_n2(),get_n1());
-
             p.add(get_d(),get_n1());
-
             p.add(get_d(),0);
 
-//
-//            p.add(0,get_n1()+get_d());
-//            p.add(0,get_n1()+get_d());
-//            p.add(get_d()+get_n2(),get_n1()+get_d());
-//            p.add(get_d()+get_n2(),get_n1()+get_d());
-//            p.add(get_d()+get_n2(),get_n1());
-//            p.add(get_d()+get_n2(),get_n1());
-//            p.add(get_d(),get_n1());
-//            p.add(get_d(),get_n1());
-//            p.add(get_d(),0);
-//            p.add(get_d(),0);
-//            p.add(0,0);
         }else{
             Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
         }
@@ -130,22 +104,19 @@ public class AcLBar extends Andmt {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         switch (getStatus()) {
-            case enlsmall:
+            case offset_big:
                 drawBig();
                 break;
-            case enlorigin:
+            case offset_normal:
                 drawOrigin();
                 break;
-            case enlbig:
+            case offset_small:
                 drawSmall();
                 break;
         }
 
 
         canvas.drawLines(p.getBarPoints(), paint);
-
-        System.out.println("//////////////");
-        p.output();
 
     }
 }

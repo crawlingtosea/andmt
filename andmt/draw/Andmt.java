@@ -1,9 +1,11 @@
 package andmt.draw;
 
+import andmt.methods.Annotations;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
 
 /**
@@ -12,7 +14,7 @@ import android.view.View;
 public abstract class Andmt extends View {
     protected Paint paint;
     protected Canvas canvas;
-
+    public Path pen;
     public int get_color() {
         return _color;
     }
@@ -44,7 +46,7 @@ public abstract class Andmt extends View {
         this._d = _d;
     }
 
-    //paiµÄºñ¶È
+    //paiï¿½Äºï¿½ï¿½
     private int _d=10;
     public static  enum acenum{acenum_samll,acenum_big;}
 
@@ -78,7 +80,13 @@ public abstract class Andmt extends View {
         init();
     }
 
-    public void offset(int value) {
+    public void addAnnotations(Annotations an) {
+
+//        for (int i = 0; i <an.length ; i++) {
+//            canvas.drawText(an.txt[i],an.xset[i],an.yset[i],paint);
+//        }
 
     }
+
+
 }

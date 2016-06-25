@@ -1,9 +1,10 @@
 package andmt.draw;
 
-import andmt.methods.Point;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.widget.Toast;
 
 /**
@@ -34,7 +35,6 @@ public class AcLBar extends Andmt {
     public static final int offset_big=1;
     public static final int offset_normal=2;
 
-    private Point p=new Point();
 
 
 
@@ -44,39 +44,31 @@ public class AcLBar extends Andmt {
 
     public void setStatus(int value) {
         this.status = value;
+        invalidate();
     }
 
     private  int status ;
 
     public AcLBar(Context context) {
         super(context);
-        this.set_color(Color.GREEN);
-
-        invalidate();
-
-
-
+         pen=new Path();
     }
 
-    @Override
-    public void offset(int value) {
-        super.offset(value);
-
-        switch (value) {
-            case offset_small:
-               setStatus(offset_small);
-                break;
-            case offset_big:
-               setStatus(offset_big);
-                break;
-
-        }
-        invalidate();
-
-    }
     private void drawSmall(){
+        if(get_n1()>0&&get_n2()>0) {
+            pen.reset();
+            pen.moveTo(0,0);
+            pen.lineTo(0,get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1());
+            pen.lineTo(get_d(),get_n1());
+            pen.lineTo(get_d(),0);
+            pen.close();
 
 
+        }else{
+            Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
+        }
 
 
 }
@@ -88,12 +80,14 @@ public class AcLBar extends Andmt {
 
     private void drawOrigin() {
         if(get_n1()>0&&get_n2()>0) {
-            p.add(0,0);
-            p.add(0,get_n1()+get_d());
-            p.add(get_d()+get_n2(),get_n1()+get_d());
-            p.add(get_d()+get_n2(),get_n1());
-            p.add(get_d(),get_n1());
-            p.add(get_d(),0);
+            pen.reset();
+            pen.moveTo(0,0);
+            pen.lineTo(0,get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1());
+            pen.lineTo(get_d(),get_n1());
+            pen.lineTo(get_d(),0);
+            pen.close();
 
         }else{
             Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
@@ -116,7 +110,8 @@ public class AcLBar extends Andmt {
         }
 
 
-        canvas.drawLines(p.getBarPoints(), paint);
+        canvas.drawPath(pen,paint);
+
 
     }
 }

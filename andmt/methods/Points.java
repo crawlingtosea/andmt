@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Points {
 
-    private ArrayList<Float> xpset = new ArrayList<>();
-    private ArrayList<Float> ypset = new ArrayList<>();
-    private ArrayList<Float> pset = new ArrayList<>();
+    private ArrayList<Float> xpset = new ArrayList<Float>();
+    private ArrayList<Float> ypset = new ArrayList<Float>();
+    private ArrayList<Float> pset = new ArrayList<Float>();
 
 
     public void add(float xpos, float ypos) {

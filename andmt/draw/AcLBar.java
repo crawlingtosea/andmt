@@ -1,9 +1,10 @@
 package andmt.draw;
 
-import andmt.methods.Point;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.widget.Toast;
 
 /**
@@ -24,6 +25,7 @@ public class AcLBar extends Andmt {
     }
     private float _n1=0;
     private float _n2=0;
+<<<<<<< HEAD
     private Point p=new Point();
 
     public AcLBar(Context context) {
@@ -51,6 +53,43 @@ public class AcLBar extends Andmt {
         invalidate();
 
     }
+=======
+
+
+    public static final int offset_small=0;
+    public static final int offset_big=1;
+    public static final int offset_normal=2;
+
+
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int value) {
+        this.status = value;
+        invalidate();
+    }
+
+    private  int status ;
+
+    public AcLBar(Context context) {
+        super(context);
+         pen=new Path();
+    }
+
+    private void drawSmall(){
+        if(get_n1()>0&&get_n2()>0) {
+            pen.reset();
+            pen.moveTo(0,0);
+            pen.lineTo(0,get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1());
+            pen.lineTo(get_d(),get_n1());
+            pen.lineTo(get_d(),0);
+            pen.close();
+>>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
 
     @Override
     public void drawSmall() {
@@ -60,12 +99,18 @@ public class AcLBar extends Andmt {
                 p.destroy();
             }
 
+<<<<<<< HEAD
             p.add(0,0);
             p.add(0,get_n1()+get_d());
             p.add(get_d()+get_n2(),get_n1()+get_d());
             p.add(get_d()+get_n2(),get_n1());
             p.add(get_d(),get_n1());
             p.add(get_d(), 0);
+=======
+        }else{
+            Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
+        }
+>>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
 
 
 
@@ -77,6 +122,7 @@ public class AcLBar extends Andmt {
     public void drawNormal() {
         super.drawNormal();
         if(get_n1()>0&&get_n2()>0) {
+<<<<<<< HEAD
             if(p.length()!=0){
                 p.destroy();
             }
@@ -86,6 +132,16 @@ public class AcLBar extends Andmt {
             p.add(get_d()+get_n2(),get_n1());
             p.add(get_d(),get_n1());
             p.add(get_d(),0);
+=======
+            pen.reset();
+            pen.moveTo(0,0);
+            pen.lineTo(0,get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1()+get_d());
+            pen.lineTo(get_d()+get_n2(),get_n1());
+            pen.lineTo(get_d(),get_n1());
+            pen.lineTo(get_d(),0);
+            pen.close();
+>>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
 
         }else{
             Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
@@ -114,8 +170,13 @@ public class AcLBar extends Andmt {
         }
 
 
+<<<<<<< HEAD
         canvas.drawLines(p.getShapePoints(), paint);
         System.out.println(p.length()+"////////////");
+=======
+        canvas.drawPath(pen,paint);
+
+>>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
 
     }
 }

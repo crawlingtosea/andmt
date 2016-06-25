@@ -1,9 +1,12 @@
 package andmt.draw;
 
 
+import andmt.methods.Annotations;
+import andmt.methods.Points;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.widget.Toast;
 
@@ -25,18 +28,9 @@ public class AcLBar extends Andmt {
     }
     private float _n1=0;
     private float _n2=0;
-
-
-
-
-
-
-    public static final int offset_small=0;
-    public static final int offset_big=1;
-    public static final int offset_normal=2;
-
-
-
+    private int m=100;
+    Paint pt;
+    Annotations an;
 
     public int getStatus() {
         return status;
@@ -49,25 +43,37 @@ public class AcLBar extends Andmt {
 
     private  int status ;
 
+    private Points p;
     public AcLBar(Context context) {
         super(context);
          pen=new Path();
+        p=new Points();
     }
 
+    @Override
+    public void annotate() {
+        super.annotate();
 
+     invalidate();
+
+
+
+
+    }
 
     @Override
     public void drawNormal() {
         super.drawNormal();
         if(get_n1()>0&&get_n2()>0) {
             pen.reset();
-            pen.moveTo(0,0);
-            pen.lineTo(0,get_n1()+get_d());
-            pen.lineTo(get_d()+get_n2(),get_n1()+get_d());
-            pen.lineTo(get_d()+get_n2(),get_n1());
-            pen.lineTo(get_d(),get_n1());
-            pen.lineTo(get_d(),0);
+            pen.moveTo(0+m,0+m);
+            pen.lineTo(0+m,get_n1()+get_d()+m);
+            pen.lineTo(get_d()+get_n2()+m,get_n1()+get_d()+m);
+            pen.lineTo(get_d()+get_n2()+m,get_n1()+m);
+            pen.lineTo(get_d()+m,get_n1()+m);
+            pen.lineTo(get_d()+m,0+m);
             pen.close();
+
 
 
         }else{
@@ -98,6 +104,28 @@ public class AcLBar extends Andmt {
 
 
         canvas.drawPath(pen,paint);
+
+        p.add(0+m,0+m);
+        p.add(0+m,get_n1()+get_d()+m);
+        p.add(get_d()+get_n2()+m,get_n1()+get_d()+m);
+        p.add(get_d()+get_n2()+m,get_n1()+m);
+        p.add(get_d()+m,get_n1()+m);
+        p.add(get_d()+m,0+m);
+        pt=new Paint();
+        pt.setColor(Color.RED);
+        pt.setStrokeWidth(2);
+        pt.setAntiAlias(true);
+        pt.setTextSize(40);
+
+        an=new Annotations(pt,p,canvas);
+
+       an.autoAddText();
+
+
+
+            an.drawAnnotationById(2);
+
+
 
 
     }

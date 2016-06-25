@@ -8,15 +8,24 @@ import java.util.ArrayList;
 public class Utils  {
 
 
-    public static float[] al2floats(ArrayList al) {
+    public static float[] al2floats(ArrayList<Float> al) {
         int s=al.size();
         float[] f = new float[s];
         for (int i = 0; i <s ; i++) {
-            f[i]=(float)al.get(i);
+            f[i] = al.get(i);
         }
-
         return f;
+    }
 
+    public static String[] al2Strings(ArrayList<String> arrayList) {
+        int s= arrayList.size();
+        String[] str=new String[s];
+        for (int i = 0; i <s ; i++) {
+            str[i]=arrayList.get(i);
+        }
+        return str;
 
     }
+
+
 }

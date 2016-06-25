@@ -35,4 +35,22 @@ public class Points {
     }
 
 
+
+    public void clear() {
+        if (length() > 0) {
+            for (int i = 0; i <length() ; i++) {
+                pset.remove(i);
+            }
+        }
+
+        for (int i = 0; i <xpset.size() ; i++) {
+            xpset.remove(i);
+        }
+
+        for (int j = 0; j <ypset.size() ; j++) {
+            ypset.remove(j);
+        }
+
+    }
+
 }

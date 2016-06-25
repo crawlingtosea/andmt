@@ -42,7 +42,7 @@ private float[] f;
 
     private  ArrayList<Integer> getIndex01012323(int tot) {
         int count=0;
-        ArrayList<Integer> value=new ArrayList<>();
+        ArrayList<Integer> value=new ArrayList<Integer>();
 
         for (int ind = 0; ind <tot ; ind++) {
 
@@ -82,7 +82,8 @@ private float[] f;
         return (int)arr[i];
     }
     public void output() {
-        ArrayList<Float> al=new ArrayList<>();
+
+        ArrayList<Float> al=new ArrayList<Float>();
         for (int i = 0; i <getBarPoints().length ; i++) {
             al.add(getBarPoints()[i]);
         }

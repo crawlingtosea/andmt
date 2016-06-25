@@ -14,11 +14,11 @@ import android.view.View;
 public abstract class Andmt extends View {
     protected Paint paint;
     protected Canvas canvas;
-<<<<<<< HEAD
+
     protected final int scale=10;
-=======
+
     public Path pen;
->>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
+
     public int get_color() {
         return _color;
     }
@@ -50,9 +50,7 @@ public abstract class Andmt extends View {
         this._d = _d;
     }
 
-<<<<<<< HEAD
-    //paiµÄºñ¶È
-    private int _d=1;
+
 
     public int getStatus() {
         return status;
@@ -72,10 +70,7 @@ public abstract class Andmt extends View {
 
 
 
-=======
-    //paiï¿½Äºï¿½ï¿½
     private int _d=10;
->>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
     public static  enum acenum{acenum_samll,acenum_big;}
 
     public Andmt(Context context) {
@@ -120,7 +115,7 @@ public abstract class Andmt extends View {
 
     }
 
-<<<<<<< HEAD
+
     public void drawNormal() {
 
     }
@@ -133,7 +128,5 @@ public abstract class Andmt extends View {
     public void drawBig() {
 
     }
-=======
 
->>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
 }

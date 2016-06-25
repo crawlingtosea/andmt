@@ -17,13 +17,12 @@ public class Acat extends Activity {
         AcLBar acLBar=new AcLBar(this);
         acLBar.set_n1(500);
         acLBar.set_n2(100);
-<<<<<<< HEAD
 
         acLBar.setStatus(Andmt.offset_normal);
         acLBar.startDraw();
-=======
+
         acLBar.setStatus(AcLBar.offset_normal);
->>>>>>> 67403f1acd174796ece5483ec4a5dfb0b49e19a3
+
         acLBar.move(100, 400);
         setContentView(acLBar);
 

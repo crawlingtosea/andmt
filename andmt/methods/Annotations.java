@@ -9,11 +9,14 @@ import android.view.View;
  */
 public class Annotations  {
 
+    private Points _p;
     public Annotations(Points p) {
+
+        _p=p;
     }
 
     public int length() {
-        return 0;
+        return _p.length();
     }
 
     public String[] txt() {
@@ -21,11 +24,11 @@ public class Annotations  {
     }
 
     public float[] xset() {
-        return new float[0];
+        return _p.xsets();
     }
 
     public float[] yset() {
-        return new float[0];
+        return _p.ysets();
     }
 
 }

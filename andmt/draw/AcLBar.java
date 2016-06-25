@@ -60,8 +60,6 @@ public class AcLBar extends Andmt {
     public void drawNormal() {
         super.drawNormal();
         if(get_n1()>0&&get_n2()>0) {
-
-
             pen.reset();
             pen.moveTo(0,0);
             pen.lineTo(0,get_n1()+get_d());

@@ -13,46 +13,23 @@ public class AcLBar extends Andmt {
     public float get_n1() {
         return _n1;
     }
-
     public void set_n1(float _n1) {
         this._n1 = _n1;
     }
-
     public float get_n2() {
         return _n2;
     }
-
     public void set_n2(float _n2) {
         this._n2 = _n2;
     }
-
     private float _n1=0;
     private float _n2=0;
-
-
-    public static final int offset_small=0;
-    public static final int offset_big=1;
-    public static final int offset_normal=2;
-
     private Point p=new Point();
-
-
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int value) {
-        this.status = value;
-    }
-
-    private  int status ;
 
     public AcLBar(Context context) {
         super(context);
-        this.set_color(Color.GREEN);
-
-        invalidate();
+       // this.set_color(Color.GREEN);
+       // setStatus(offset_normal);
 
 
 
@@ -74,20 +51,35 @@ public class AcLBar extends Andmt {
         invalidate();
 
     }
-    private void drawSmall(){
+
+    @Override
+    public void drawSmall() {
+        super.drawSmall();
+        if (get_n1() > 0 && get_n2() > 0) {
+            if(p.length()!=0){
+                p.destroy();
+            }
+
+            p.add(0,0);
+            p.add(0,get_n1()+get_d());
+            p.add(get_d()+get_n2(),get_n1()+get_d());
+            p.add(get_d()+get_n2(),get_n1());
+            p.add(get_d(),get_n1());
+            p.add(get_d(), 0);
 
 
 
 
-}
-
-    private void drawBig() {
-
-
+        }
     }
 
-    private void drawOrigin() {
+    @Override
+    public void drawNormal() {
+        super.drawNormal();
         if(get_n1()>0&&get_n2()>0) {
+            if(p.length()!=0){
+                p.destroy();
+            }
             p.add(0,0);
             p.add(0,get_n1()+get_d());
             p.add(get_d()+get_n2(),get_n1()+get_d());
@@ -100,6 +92,12 @@ public class AcLBar extends Andmt {
         }
     }
 
+
+    @Override
+    public void drawBig() {
+        super.drawBig();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -108,7 +106,7 @@ public class AcLBar extends Andmt {
                 drawBig();
                 break;
             case offset_normal:
-                drawOrigin();
+                drawNormal();
                 break;
             case offset_small:
                 drawSmall();
@@ -116,7 +114,8 @@ public class AcLBar extends Andmt {
         }
 
 
-        canvas.drawLines(p.getBarPoints(), paint);
+        canvas.drawLines(p.getShapePoints(), paint);
+        System.out.println(p.length()+"////////////");
 
     }
 }

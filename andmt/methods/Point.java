@@ -36,31 +36,34 @@ private float[] f;
 
     }
 
+    public int length() {
+        return points.size();
+    }
 
-    private static ArrayList<Float> getIndex01012323(int tot) {
+    private  ArrayList<Integer> getIndex01012323(int tot) {
         int count=0;
-        ArrayList<Float> value=new ArrayList<>();
+        ArrayList<Integer> value=new ArrayList<>();
 
         for (int ind = 0; ind <tot ; ind++) {
 
             if (ind == 0) {
-                value .add((float)0);
+                value .add(0);
 
             } else if (ind == 1) {
-                value.add((float)1);
+                value.add(1);
 
 
             } else if (ind % 4 == 0 && ind != 0) {
                 for (int j = 0; j < 4; j++) {
-                    value.add((float)j + count);
+                    value.add(j + count);
 
                 }
                 count = count + 2;
             } else if (ind ==( tot - 2)) {
-                value .add((float)(ind - (tot / 4 + 1) * 2 + 2));
+                value .add(ind - (tot / 4 + 1) * 2 + 2);
 
             } else if (ind == (tot - 1)) {
-                value.add((float)(ind - (tot / 4 + 1) * 2 + 2));
+                value.add(ind - (tot / 4 + 1) * 2 + 2);
 
             }
         }
@@ -68,7 +71,8 @@ private float[] f;
         return value;
     }
 
-    private int arraylist2int(int i,ArrayList<Float> al) {
+    private int getIndexByID(int i, ArrayList<Integer> al) {
+
         float [] arr=new float[al.size()];
 
         for (int j = 0; j <al.size() ; j++) {
@@ -76,9 +80,6 @@ private float[] f;
         }
 
         return (int)arr[i];
-
-
-
     }
     public void output() {
         ArrayList<Float> al=new ArrayList<>();
@@ -93,14 +94,25 @@ private float[] f;
 
     }
 
-    public float[] getBarPoints() {
+    private float [] shapePoints=new float[length()];
+    public float[] getShapePoints() {
+        if (shapePoints.length != 12) {
+            shapePoints = null;
+            shapePoints=getBarPoints();
+        } else {
+            shapePoints=getBarPoints();
+        }
+        return shapePoints;
+    }
+
+    private   float[] getBarPoints() {
          int total=points.size()*2;
         float[] ps=new float[total];
         ArrayList<Float> result=new ArrayList<Float>();
-        ArrayList<Float> indexs=getIndex01012323(total);
+        ArrayList<Integer> indexs=getIndex01012323(total);
 
         for (int i = 0; i < total; i++) {
-           result.add(points.get(arraylist2int(i,indexs)));
+           result.add(points.get(getIndexByID(i, indexs)));
         }
 
         result.remove(0);

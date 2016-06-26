@@ -6,14 +6,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.widget.Toast;
 
 /**
  * Created by Administrator on 2016/6/26.
  */
-public class AcLeftElephantBar extends Andmt {
-
+public class AcRightElephantBar extends Andmt {
     private float _sw=0;
     private float _h=0;
     private float _w=0;
@@ -23,7 +21,7 @@ public class AcLeftElephantBar extends Andmt {
     private float _C=0;
 
 
-    public AcLeftElephantBar(Context context,float sh,float h,float w,float xh,float bottomLen,boolean isAnnote ) {
+    public AcRightElephantBar(Context context,float sh,float h,float w,float xh,float bottomLen,boolean isAnnote ) {
         super(context, isAnnote);
         seg=10;
         this._sw=sh;
@@ -31,7 +29,7 @@ public class AcLeftElephantBar extends Andmt {
         this._w=w;
         this._xw=xh;
         this._bottomLen=bottomLen;
-        this._l= Utils.MMP(get_d(),_h/w);
+        this._l= Utils.MMP(get_d(), _h / w);
         this._C=Utils.T_C(_h,_w);
         addPointData();
         if (isAnnote) {
@@ -55,16 +53,19 @@ public class AcLeftElephantBar extends Andmt {
     public void addPointData() {
 
         super.addPointData();
-        anpoints.add(0, 0);
-        anpoints.add(0, _sw);
-        anpoints.add(_w, _sw + _h);
-        anpoints.add(_w, _sw + _h + _xw + get_d());
-        anpoints.add(_w + get_d() + _bottomLen, _sw + _h + _xw + get_d());
-        anpoints.add(_w + get_d() + _bottomLen, _sw + _h+_xw);
-        anpoints.add(_w + get_d(), _sw + _h+_xw);
-        anpoints.add(_w + get_d(), _sw +_h-_l);
-        anpoints.add(get_d(), _sw-_l);
-        anpoints.add(get_d(), 0);
+
+      anpoints.add(_w,0);
+      anpoints.add(_w+get_d(),0);
+      anpoints.add(_w+get_d(),_sw);
+      anpoints.add(get_d(),_sw+_h);
+      anpoints.add(get_d(),_sw+_h+_xw);
+      anpoints.add(get_d()+_bottomLen,_sw+_h+_xw);
+      anpoints.add(get_d()+_bottomLen,_sw+_h+_xw+get_d());
+      anpoints.add(0,_sw+_h+_xw+get_d());
+      anpoints.add(0,_sw+_h-_l);
+      anpoints.add(_w,_sw-_l);
+      anpoints.add(_w,0);
+
     }
 
     @Override
@@ -119,7 +120,4 @@ public class AcLeftElephantBar extends Andmt {
 
 
     }
-
-
-
 }

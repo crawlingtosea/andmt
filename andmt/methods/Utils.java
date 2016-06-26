@@ -32,5 +32,9 @@ public class Utils  {
         return Float.valueOf(Double.toString(d/Math.tan(Math.PI/180*((180/Math.PI*(Math.atan(n))+90)/2))));
     }
 
+    public static float T_C(float a,float b) {
+        return Float.valueOf(Double.toString(Math.sqrt(a * a + b * b)));
+    }
+
 
 }

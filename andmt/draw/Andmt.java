@@ -30,7 +30,7 @@ public abstract class Andmt extends View {
 
     }
 
-    private int _color=Color.RED;
+    private int _color=Color.GREEN;
 
     public int get_StrokeWidth() {
         return _strokeWidth;

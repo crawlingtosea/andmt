@@ -56,7 +56,6 @@ public class AcLBar extends Andmt {
             anpoints.add(get_d() + _n2 + _m, _n1 + _m);
             anpoints.add(get_d() + _m, _n1 + _m);
             anpoints.add(get_d() + _m, 0 + _m);
-        System.out.println("////////////this is add point");
 
     }
 
@@ -83,10 +82,8 @@ public class AcLBar extends Andmt {
     public void draw() {
         super.draw();
         if(_n1>0&&_n2>0) {
-            System.out.println("///////////////////draw");
             pen.reset();
             pen.moveTo(anpoints.getObjById(0), anpoints.getObjById(1));
-           // System.out.println("#############"+anpoints.len());
 
             for (int i = 0; i <((seg-1)*2-1); i+=2) {
                 pen.lineTo(anpoints.getObjById(i + 2), anpoints.getObjById(i + 3));
@@ -104,11 +101,10 @@ public class AcLBar extends Andmt {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
        draw();
-       // canvas.drawText("BeiJing", 200, 200, paint);
 
         canvas.drawPath(pen, paint);
         if (isAnnote) {
-               an.autoDrawAnnotation(canvas, 3, 20, 100);
+               an.autoDrawAnnotation(canvas, 3, 40, 40);
            }
 
 

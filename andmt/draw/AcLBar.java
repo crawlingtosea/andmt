@@ -19,21 +19,20 @@ public class AcLBar extends Andmt {
     private float _n1=0;
     private float _n2=0;
     private int _m=0;
-    private Path pen;
+
 
     public AcLBar(Context context,boolean isAnnote ,float height,float width,int offsetm) {
         super(context, isAnnote);
         this._n1=height;
         this._n2=width;
         this._m=offsetm;
-        anpoints=new Points();
-        pen=new Path();
-        addPointData();
+        seg=6;
 
+
+        addPointData();
         if (isAnnote) {
             initAnnotate();
         }
-
     }
 
     private void initAnnotate() {
@@ -87,7 +86,9 @@ public class AcLBar extends Andmt {
             System.out.println("///////////////////draw");
             pen.reset();
             pen.moveTo(anpoints.getObjById(0), anpoints.getObjById(1));
-            for (int i = 0; i <9 ; i+=2) {
+           // System.out.println("#############"+anpoints.len());
+
+            for (int i = 0; i <((seg-1)*2-1); i+=2) {
                 pen.lineTo(anpoints.getObjById(i + 2), anpoints.getObjById(i + 3));
             }
             pen.close();
@@ -112,4 +113,7 @@ public class AcLBar extends Andmt {
 
 
     }
+
+
+
 }

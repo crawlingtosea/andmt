@@ -61,7 +61,8 @@ public abstract class Andmt extends View {
     public Annotations an;
     public Points anpoints;
     public boolean isAnnote=false;
-
+    public Path pen;
+    public int seg=0;
     public Andmt(Context context,boolean isAnnote) {
         super(context);
         paint = new Paint();
@@ -71,6 +72,8 @@ public abstract class Andmt extends View {
 
 
         this.isAnnote=isAnnote;
+        anpoints=new Points();
+        pen=new Path();
 
 
 

@@ -1,6 +1,7 @@
 package andmt.debug;
 
 import andmt.draw.AcLBar;
+import andmt.draw.AcLeftElephantBar;
 import andmt.draw.Andmt;
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,12 +15,13 @@ public class Acat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AcLBar acLBar=new AcLBar(this,true,500,200,0);
+        AcLeftElephantBar acLBar=new AcLeftElephantBar(this,100,800,100,200,300,true);
         acLBar.startDraw();
         setContentView(acLBar);
-        acLBar.move(100,400);
+        acLBar.move(100, 400);
 
 
     }
+
 
 }

@@ -54,6 +54,10 @@ public class Points {
         return pset.size();
     }
 
+    public int len() {
+        return xpset.size();
+    }
+
     public float getObjById(int id) {
         return pset.get(id);
     }

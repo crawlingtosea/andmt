@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Created by Administrator on 2016/6/23.
  */
-public class Point {
+public class OldPoint {
 
 private float[] f;
     public float[] getPoints() {

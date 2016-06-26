@@ -1,6 +1,7 @@
 package andmt.methods;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Administrator on 2016/6/25 0025.
@@ -19,10 +20,29 @@ public class Points {
         pset.add(ypos);
     }
 
+    public void outputxpset() {
+        Iterator it=xpset.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+
     public float[] xsets() {
 
 
     return Utils.al2floats(xpset);
+
+    }
+
+    public float[] psets() {
+        return Utils.al2floats(pset);
+    }
+
+    public void outputpset() {
+        Iterator it=pset.iterator();
+        while (it.hasNext()) {
+            System.out.println("//////////this is psets "+it.next());
+        }
 
     }
 
@@ -34,23 +54,14 @@ public class Points {
         return pset.size();
     }
 
-
+    public float getObjById(int id) {
+        return pset.get(id);
+    }
 
     public void clear() {
-        if (length() > 0) {
-            for (int i = 0; i <length() ; i++) {
-                pset.remove(i);
-            }
-        }
-
-        for (int i = 0; i <xpset.size() ; i++) {
-            xpset.remove(i);
-        }
-
-        for (int j = 0; j <ypset.size() ; j++) {
-            ypset.remove(j);
-        }
-
+        pset.clear();
+        xpset.clear();
+        ypset.clear();
     }
 
 }

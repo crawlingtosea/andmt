@@ -1,6 +1,7 @@
 package andmt.draw;
 
 import andmt.methods.Annotations;
+import andmt.methods.Points;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,16 +13,13 @@ import android.view.View;
  * Created by Administrator on 2016/6/22 0022.
  */
 public abstract class Andmt extends View {
-    public Paint getPaint() {
-        return paint;
-    }
 
-    protected Paint paint;
-    protected Canvas canvas;
+    public Paint paint;
+    public Canvas canvas;
 
     protected final int scale=10;
 
-    public Path pen;
+
 
     public int get_color() {
         return _color;
@@ -54,37 +52,37 @@ public abstract class Andmt extends View {
         this._d = _d;
     }
 
-
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int value) {
-        this.status = value;
-
-    }
-
-    private  int status ;
-    public static final int offset_small=0;
-    public static final int offset_big=1;
-    public static final int offset_normal=2;
+    private int _d=1;
 
 
 
 
+    public Paint anpt;
+    public Annotations an;
+    public Points anpoints;
+    public boolean isAnnote=false;
 
-    private int _d=10;
-    public static  enum acenum{acenum_samll,acenum_big;}
-
-    public Andmt(Context context) {
+    public Andmt(Context context,boolean isAnnote) {
         super(context);
         paint = new Paint();
         canvas = new Canvas();
         init();
 
+
+
+        this.isAnnote=isAnnote;
+
+
+
     }
 
+
+
+
+
+    public void addPointData() {
+
+    }
     public void startDraw() {
         invalidate();
     }
@@ -94,8 +92,6 @@ public abstract class Andmt extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(get_StrokeWidth());
         paint.setAntiAlias(true);
-
-
     }
 
     public void move(int xpos,int ypos) {
@@ -108,30 +104,16 @@ public abstract class Andmt extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        init();
-    }
-
-    public void addAnnotations(Annotations an) {
-
-//        for (int i = 0; i <an.length ; i++) {
-//            canvas.drawText(an.txt[i],an.xset[i],an.yset[i],paint);
-//        }
-
+       init();
     }
 
 
-    public void drawNormal() {
+
+
+    public void draw() {
 
     }
 
-    public void drawSmall() {
-
-
-    }
-
-    public void drawBig() {
-
-    }
 
     public void annotate() {
 

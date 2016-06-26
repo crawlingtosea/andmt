@@ -14,29 +14,12 @@ public class Acat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AcLBar acLBar=new AcLBar(this);
-        acLBar.set_n1(500);
-        acLBar.set_n2(100);
-
-        acLBar.setStatus(Andmt.offset_normal);
+        AcLBar acLBar=new AcLBar(this,true,500,200,0);
         acLBar.startDraw();
-
-        acLBar.setStatus(AcLBar.offset_normal);
-
-        acLBar.move(100, 400);
         setContentView(acLBar);
+        acLBar.move(100,400);
 
 
     }
 
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 }

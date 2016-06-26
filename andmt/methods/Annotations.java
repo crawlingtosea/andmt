@@ -1,6 +1,5 @@
 package andmt.methods;
 
-import andmt.draw.Andmt;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -14,12 +13,11 @@ public class Annotations   {
     private Points ps;
     private ArrayList<String> txtset = new ArrayList<String>();
     private int couter=0;
-    private Canvas canvas;
     private Paint pt;
-    public Annotations(Paint paint, Points p, Canvas can) {
+    public Annotations(Paint paint, Points p) {
         this.pt = paint;
         this.ps =p;
-        this.canvas=can;
+
     }
 
     public int length() {
@@ -39,24 +37,54 @@ public class Annotations   {
         return ps.ysets();
     }
 
-   public void addtext(String str) {
-       txtset.add("@"+(couter++)+": "+str);
+    public float[] pset() {
+        return ps.psets();
+    }
+
+
+  public void addtext(String first,String str) {
+       txtset.add("@"+(couter++)+first+" "+str);
    }
 
-    public void autoAddText() {
-        for (int i = 0; i <xset().length ; i++) {
-            txtset.add("@P"+(couter++)+", "+xset()[i]+" , "+yset()[i]);
+
+    public void autoAddNonotation() {
+        for (int i = 0; i < xset().length; i++) {
+            txtset.add("@P" + (couter++) + ", " + xset()[i] + " , " + yset()[i]);
+        }
+    }
+    public void autoDrawAnnotation(Canvas can,int lockX,int xmove,int ymove) {
+        if (txtset().length != 0) {
+
+            for (int i = 0; i <couter; i++) {
+                can.drawText(txtset.get(i), xset()[lockX] + xmove, i * 50 + ymove, pt);
+            }
+
+            //System.out.println("///////////////////坐标记录成功 autoaddannote");
+        } else {
+            System.out.println("////////////////error record");
         }
 
+    }
+
+    public void clear() {
+        ps.clear();
+        txtset.clear();
     }
 
     public String getTextById(int id) {
         return txtset.get(id);
     }
 
-    public void drawAnnotationById(int id) {
-        canvas.drawText(getTextById(id),xset()[id],yset()[id], pt);
+   /* public void drawAnnotationById(int id) {
+        ancanvas.drawText(getTextById(id), xset()[id], yset()[id], pt);
 
+    }*/
+
+    public void testDraw(Canvas can) {
+        can.drawText("test", 200, 200, pt);
+        System.out.println("///////////testdraw");
     }
+
+
 
 }

@@ -14,118 +14,101 @@ import android.widget.Toast;
  * Created by Administrator on 2016/6/22.
  */
 public class AcLBar extends Andmt {
-    public float get_n1() {
-        return _n1;
-    }
-    public void set_n1(float _n1) {
-        this._n1 = _n1;
-    }
-    public float get_n2() {
-        return _n2;
-    }
-    public void set_n2(float _n2) {
-        this._n2 = _n2;
-    }
+
+
     private float _n1=0;
     private float _n2=0;
-    private int m=100;
-    Paint pt;
-    Annotations an;
+    private int _m=0;
+    private Path pen;
 
-    public int getStatus() {
-        return status;
+    public AcLBar(Context context,boolean isAnnote ,float height,float width,int offsetm) {
+        super(context, isAnnote);
+        this._n1=height;
+        this._n2=width;
+        this._m=offsetm;
+        anpoints=new Points();
+        pen=new Path();
+        addPointData();
+
+        if (isAnnote) {
+            initAnnotate();
+        }
+
     }
 
-    public void setStatus(int value) {
-        this.status = value;
-        invalidate();
+    private void initAnnotate() {
+        anpt =new Paint();
+
+        anpt.setColor(Color.RED);
+        anpt.setStrokeWidth(1);
+        anpt.setAntiAlias(true);
+        anpt.setTextSize(30);
+
+        annotate();
     }
 
-    private  int status ;
+    @Override
+    public void addPointData() {
 
-    private Points p;
-    public AcLBar(Context context) {
-        super(context);
-         pen=new Path();
-        p=new Points();
+        super.addPointData();
+            anpoints.add(0 + _m, 0 + _m);
+            anpoints.add(0 + _m, _n1 + get_d() + _m);
+            anpoints.add(get_d() + _n2 + _m, _n1 + get_d() + _m);
+            anpoints.add(get_d() + _n2 + _m, _n1 + _m);
+            anpoints.add(get_d() + _m, _n1 + _m);
+            anpoints.add(get_d() + _m, 0 + _m);
+        System.out.println("////////////this is add point");
+
+    }
+
+    @Override
+    public void startDraw() {
+        super.startDraw();
+
     }
 
     @Override
     public void annotate() {
         super.annotate();
-
-     invalidate();
-
-
-
+        if (isAnnote) {
+            an=new Annotations(anpt, anpoints);
+            an.autoAddNonotation();
+             an.addtext("width", String.valueOf(_n1));
+             an.addtext("height", String.valueOf(_n2));
+            an.addtext("total", String.valueOf(_n1 + _n2));
+        }
 
     }
 
     @Override
-    public void drawNormal() {
-        super.drawNormal();
-        if(get_n1()>0&&get_n2()>0) {
+    public void draw() {
+        super.draw();
+        if(_n1>0&&_n2>0) {
+            System.out.println("///////////////////draw");
             pen.reset();
-            pen.moveTo(0+m,0+m);
-            pen.lineTo(0+m,get_n1()+get_d()+m);
-            pen.lineTo(get_d()+get_n2()+m,get_n1()+get_d()+m);
-            pen.lineTo(get_d()+get_n2()+m,get_n1()+m);
-            pen.lineTo(get_d()+m,get_n1()+m);
-            pen.lineTo(get_d()+m,0+m);
+            pen.moveTo(anpoints.getObjById(0), anpoints.getObjById(1));
+            for (int i = 0; i <9 ; i+=2) {
+                pen.lineTo(anpoints.getObjById(i + 2), anpoints.getObjById(i + 3));
+            }
             pen.close();
-
-
-
         }else{
             Toast.makeText(getContext(),"cannot empty values n1 ,n2 !",Toast.LENGTH_LONG).show();
         }
     }
 
 
-    @Override
-    public void drawBig() {
-        super.drawBig();
-    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        switch (getStatus()) {
-            case offset_big:
-                drawBig();
-                break;
-            case offset_normal:
-                drawNormal();
-                break;
-            case offset_small:
-                drawSmall();
-                break;
-        }
+       draw();
+       // canvas.drawText("BeiJing", 200, 200, paint);
 
-
-        canvas.drawPath(pen,paint);
-
-        p.add(0+m,0+m);
-        p.add(0+m,get_n1()+get_d()+m);
-        p.add(get_d()+get_n2()+m,get_n1()+get_d()+m);
-        p.add(get_d()+get_n2()+m,get_n1()+m);
-        p.add(get_d()+m,get_n1()+m);
-        p.add(get_d()+m,0+m);
-        pt=new Paint();
-        pt.setColor(Color.RED);
-        pt.setStrokeWidth(2);
-        pt.setAntiAlias(true);
-        pt.setTextSize(40);
-
-        an=new Annotations(pt,p,canvas);
-
-       an.autoAddText();
-
-
-
-            an.drawAnnotationById(2);
-
-
+        canvas.drawPath(pen, paint);
+        if (isAnnote) {
+               an.autoDrawAnnotation(canvas, 3, 20, 100);
+           }
 
 
     }
